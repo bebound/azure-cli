@@ -944,6 +944,10 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                                      'specifies the blob snapshot to retrieve.')
             c.argument('lease_id', help='Required if the blob has an active lease.')
 
+    for item in ['metadata show', 'metadata update']:
+        with self.argument_context('storage blob {}'.format(item)) as c:
+            c.extra('lease', options_list=['--lease-id'], help='Required if the blob has an active lease.')
+
     # pylint: disable=line-too-long
     with self.argument_context('storage blob upload', resource_type=ResourceType.DATA_STORAGE_BLOB) as c:
         from ._validators import validate_encryption_scope_client_params, validate_upload_blob
