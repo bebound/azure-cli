@@ -12,7 +12,7 @@ import shutil
 import zipfile
 import traceback
 import hashlib
-from subprocess import check_output, STDOUT, CalledProcessError
+import subprocess
 from urllib.parse import urlparse
 
 from packaging.version import parse
@@ -50,10 +50,11 @@ def _run_pip(pip_exec_args, extension_path=None):
     cmd = [sys.executable, '-m', 'pip'] + pip_exec_args + ['-vv', '--disable-pip-version-check', '--no-cache-dir']
     logger.debug('Running: %s', cmd)
     try:
-        log_output = check_output(cmd, stderr=STDOUT, universal_newlines=True)
-        logger.debug(log_output)
+        process = subprocess.run(cmd, universal_newlines=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+        logger.debug(process.stdout)
+        logger.warning(process.stderr)
         returncode = 0
-    except CalledProcessError as e:
+    except subprocess.CalledProcessError as e:
         logger.debug(e.output)
         logger.debug(e)
         if "PermissionError: [WinError 5]" in e.output:
