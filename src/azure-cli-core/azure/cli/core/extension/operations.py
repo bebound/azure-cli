@@ -53,7 +53,7 @@ def _run_pip(pip_exec_args, extension_path=None):
         process = subprocess.run(cmd, universal_newlines=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         logger.debug(process.stdout)
         logger.warning(process.stderr)
-        returncode = 0
+        returncode = 0 if not process.stderr else 1
     except subprocess.CalledProcessError as e:
         logger.debug(e.output)
         logger.debug(e)
