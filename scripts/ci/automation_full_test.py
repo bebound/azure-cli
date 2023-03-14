@@ -95,7 +95,6 @@ cli_jobs = {
             'search': 34,
             'security': 23,
             'servicebus': 24,
-            'serviceconnector': 56,
             'servicefabric': 49,
             'signalr': 20,
             'sql': 117,

@@ -64,7 +64,6 @@
     "search": "src/azure-cli/azure/cli/command_modules/search/_help.py",
     "security": "src/azure-cli/azure/cli/command_modules/security/_help.py",
     "servicebus": "src/azure-cli/azure/cli/command_modules/servicebus/_help.py",
-    "serviceconnector": "src/azure-cli/azure/cli/command_modules/serviceconnector/_help.py",
     "servicefabric": "src/azure-cli/azure/cli/command_modules/servicefabric/_help.py",
     "signalr": "src/azure-cli/azure/cli/command_modules/signalr/_help.py",
     "sql": "src/azure-cli/azure/cli/command_modules/sql/_help.py",
