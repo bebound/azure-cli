@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------------------------
 
 from codecs import open
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 VERSION = "2.53.0"
 
@@ -79,7 +79,7 @@ setup(
     url='https://github.com/Azure/azure-cli',
     zip_safe=False,
     classifiers=CLASSIFIERS,
-    packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests", "azure", "azure.cli"]),
+    packages=find_namespace_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=DEPENDENCIES,
     python_requires='>=3.8.0',
     package_data={'azure.cli.core': ['auth/landing_pages/*.html']}
