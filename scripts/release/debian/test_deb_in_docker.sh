@@ -25,6 +25,8 @@ ln -sf /opt/az/bin/python3 /usr/bin/python
 find /azure-cli/artifacts/build -name "azure_cli_testsdk*" | xargs /opt/az/bin/python3 -m pip install --upgrade --ignore-installed
 find /azure-cli/artifacts/build -name "azure_cli_fulltest*" | xargs /opt/az/bin/python3 -m pip install --upgrade --ignore-installed --no-deps
 
+cp /azure-cli/artifacts/build/* /mnt/artifacts/
+
 /opt/az/bin/python3 -m pip freeze
 
 /opt/az/bin/python3 /azure-cli/scripts/release/debian/test_deb_package.py

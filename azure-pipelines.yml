@@ -960,29 +960,9 @@ jobs:
   strategy:
     matrix:
       ${{ each arch in parameters.architectures }}:
-        Focal ${{ arch.name }}:
-          deb_system: ubuntu
-          distro: focal
-          arch: ${{ arch.value }}
-          pool: ${{ arch.pool }}
         Jammy ${{ arch.name }}:
           deb_system: ubuntu
           distro: jammy
-          arch: ${{ arch.value }}
-          pool: ${{ arch.pool }}
-        Noble ${{ arch.name }}:
-          deb_system: ubuntu
-          distro: noble
-          arch: ${{ arch.value }}
-          pool: ${{ arch.pool }}
-        Bullseye ${{ arch.name }}:
-          deb_system: debian
-          distro: bullseye
-          arch: ${{ arch.value }}
-          pool: ${{ arch.pool }}
-        Bookworm ${{ arch.name }}:
-          deb_system: debian
-          distro: bookworm
           arch: ${{ arch.value }}
           pool: ${{ arch.pool }}
   pool:
@@ -1015,6 +995,13 @@ jobs:
         echo "== Test debian package on ${DISTRO} =="
         docker pull ${DISTRO_BASE_IMAGE}
         docker run --rm -e DISTRO=${DISTRO} -e CLI_VERSION=$CLI_VERSION -v $SYSTEM_ARTIFACTSDIRECTORY/debian:/mnt/artifacts -v $(pwd):/azure-cli ${DISTRO_BASE_IMAGE} /bin/bash "/azure-cli/scripts/release/debian/test_deb_in_docker.sh"
+
+  - task: PublishPipelineArtifact@0
+    displayName: 'Publish Artifact: testsdk'
+    condition: always()
+    inputs:
+      TargetPath: $(Build.ArtifactStagingDirectory)
+      ArtifactName: testsdk
 
 - job: CheckStyle
   displayName: "Check CLI Style"
