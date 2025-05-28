@@ -103,6 +103,7 @@ javaproperties==0.5.1
 jmespath==0.9.5
 jsondiff==2.0.0
 knack==0.11.0
+MarkupSafe==2.0.1
 msal-extensions==1.2.0
 msal[broker]==1.32.0
 msrest==0.7.1
